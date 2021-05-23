@@ -33,7 +33,7 @@ router.post('/signin', (req, res) => {
                 if (matches) {
                     const token = jwt.sign({ id: user.id }, 'lets_play_sum_games_man', { expiresIn: 60 * 60 * 24 });
                     res.json({
-                       user,
+                        user,
                         message: "Successfully authenticated.",
                         sessionToken: token
                     });

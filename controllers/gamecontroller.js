@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         .then(
             function findSuccess(game) {
                 res.status(200).json({
-                   game
+                    game
                 })
             },
 
@@ -97,20 +97,20 @@ router.delete('/remove/:id', (req, res) => {
             owner_id: req.user.id
         }
     })
-    .then(
-        function deleteSuccess(game) {
-            res.status(200).json({
-                game,
-                message: "Successfully deleted"
-            })
-        },
+        .then(
+            function deleteSuccess(game) {
+                res.status(200).json({
+                    game,
+                    message: "Successfully deleted"
+                })
+            },
 
-        function deleteFail(err) {
-            res.status(500).json({
-                error: err.message
-            })
-        }
-    )
+            function deleteFail(err) {
+                res.status(500).json({
+                    error: err.message
+                })
+            }
+        )
 })
 
 module.exports = router;
