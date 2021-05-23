@@ -1,12 +1,12 @@
-var router = require('express').Router();
-var Game = require('../db').import('../models/game');
+const router = require('express').Router();
+const Game = require('../db').import('../models/game');
 
 router.get('/all', (req, res) => {
     Game.findAll({ where: { owner_id: req.user.id } })
         .then(
             function findSuccess(data) {
                 res.status(200).json({
-                    games: games,
+                    games,
                     message: "Data fetched."
                 })
             },
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
         .then(
             function findSuccess(game) {
                 res.status(200).json({
-                    game: game
+                    game
                 })
             },
 
@@ -48,7 +48,7 @@ router.post('/create', (req, res) => {
         .then(
             function createSuccess(game) {
                 res.status(200).json({
-                    game: game,
+                    game,
                     message: "Game created."
                 })
             },
@@ -76,7 +76,7 @@ router.put('/update/:id', (req, res) => {
         .then(
             function updateSuccess(game) {
                 res.status(200).json({
-                    game: game,
+                    game,
                     message: "Successfully updated."
                 })
             },
@@ -97,20 +97,20 @@ router.delete('/remove/:id', (req, res) => {
             owner_id: req.user.id
         }
     })
-    .then(
-        function deleteSuccess(game) {
-            res.status(200).json({
-                game: game,
-                message: "Successfully deleted"
-            })
-        },
+        .then(
+            function deleteSuccess(game) {
+                res.status(200).json({
+                    game,
+                    message: "Successfully deleted"
+                })
+            },
 
-        function deleteFail(err) {
-            res.status(500).json({
-                error: err.message
-            })
-        }
-    )
+            function deleteFail(err) {
+                res.status(500).json({
+                    error: err.message
+                })
+            }
+        )
 })
 
-module.exports = routers;
+module.exports = router;
